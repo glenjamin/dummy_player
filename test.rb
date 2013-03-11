@@ -3,23 +3,22 @@ require './players/player'
 @words = File.readlines('/usr/share/dict/words')
 
 def random_word
-  @words.sample.downcase
+  @words.sample.strip.downcase
 end
 
 @player = Player.new
-word = "____"
 answer = random_word
+word = "_" * answer.length
 guesses = []
 while word != answer and guesses.length <= 26
   guess = @player.take_turn(word, guesses)
   guesses << guess
-  word.split(//).each_with_index do | letter, i |
+  answer.split(//).each_with_index do | letter, i |
     if letter == guess
       word[i] = letter
     end
   end
 end
 
-puts word
 puts answer
-puts guesses
+puts guesses.length
