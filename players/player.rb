@@ -19,9 +19,9 @@ class Player
   end
 
   def valid_words(state)
-    regex = RegExp.new("^#{state.gsub(/_/, '.')}$")
+    regex = Regexp.new("^#{state.gsub(/_/, '.')}$")
     wordlist.select do |word|
-      word.length == state.length #and regex.
+      word.length == state.length and regex.match(word)
     end
   end
 
