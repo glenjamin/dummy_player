@@ -12,7 +12,6 @@ class Player
     sorted_alphabet = sort(words)
 
     letters = (sorted_alphabet - guesses)
-    puts [words.length, letters.join('')].join ' '
     letters.shift
   end
 
