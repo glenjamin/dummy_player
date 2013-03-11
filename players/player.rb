@@ -8,6 +8,31 @@ class Player
   ALPHABET = 'etaoinshrdlcumwfgypbvkjxqz'.split(//)
 
   def take_turn(state, guesses)
-    (ALPHABET - guesses).shift
+    words = valid_words(state)
+    sorted_alphabet = sort(words)
+
+    (sorted_alphabet - guesses).shift
+  end
+
+  def wordlist
+    @wordlist ||= File.readlines('/usr/share/dict/words')
+  end
+
+  def valid_words(state)
+    regex = RegExp.new("^#{state.gsub(/_/, '.')}$")
+    wordlist.select do |word|
+      word.length == state.length #and regex.
+    end
+  end
+
+  def sort(words)
+    freqs = Hash.new(0)
+    words.each do |word|
+      word.strip.downcase.split(//).each do |letter|
+        freqs[letter] += 1
+      end
+    end
+    letters = freqs.each_pair.sort_by { |p| p[1] }.reverse.map { |p| p[0] }
+    letters + (ALPHABET - letters)
   end
 end
