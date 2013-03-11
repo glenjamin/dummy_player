@@ -11,11 +11,13 @@ class Player
     words = valid_words(state)
     sorted_alphabet = sort(words)
 
-    (sorted_alphabet - guesses).shift
+    letters = (sorted_alphabet - guesses)
+    puts [words.length, letters.join('')].join ' '
+    letters.shift
   end
 
   def wordlist
-    @wordlist ||= File.readlines(File.expand_path("../354984si.ngl", __FILE__)).select do |w|
+    @wordlist ||= File.readlines(File.expand_path("../354984si.ngl", __FILE__)).map(&:strip).select do |w|
       w =~ /^\w+$/
     end
   end

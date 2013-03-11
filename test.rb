@@ -8,6 +8,7 @@ end
 
 @player = Player.new
 answer = random_word
+answer = "despatch"
 word = "_" * answer.length
 guesses = []
 wrong = 0
