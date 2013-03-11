@@ -15,7 +15,9 @@ class Player
   end
 
   def wordlist
-    @wordlist ||= File.readlines('/usr/share/dict/words')
+    @wordlist ||= File.readlines(File.expand_path("../354984si.ngl", __FILE__)).select do |w|
+      w =~ /^\w+$/
+    end
   end
 
   def valid_words(state)
