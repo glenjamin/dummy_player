@@ -5,9 +5,9 @@ class Player
     "Glen & Dan"
   end
 
-  ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split(//)
+  ALPHABET = 'etaoinshrdlcumwfgypbvkjxqz'.split(//)
 
   def take_turn(state, guesses)
-    (Set.new(ALPHABET) - Set.new(guesses)).to_a.sample
+    (ALPHABET - guesses).shift
   end
 end
