@@ -1,10 +1,13 @@
-require 'my_helper'
+require 'set'
+
 class Player
   def name
-    "Change Me"
+    "Glen & Dan"
   end
 
+  ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split(//)
+
   def take_turn(state, guesses)
-    MyHelper.answer
+    (Set.new(ALPHABET) - Set.new(guesses)).to_a.sample
   end
 end
